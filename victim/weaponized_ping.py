@@ -12,6 +12,8 @@ def main():
     pinger = Pinger(args.ip)
     # call the ping method
     pinger.ping()
+    # notify the user that the ping has been sent
+    print("[!] Ping sent succesfully to " + args.ip)
 
 if __name__ == "__main__":
   # Validate IP address set by the user, if valid, execute main, otherwise print error and exit

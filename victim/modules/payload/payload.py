@@ -25,7 +25,7 @@ class Payload:
 
   def build_payload(self, *data: str) -> bytes:
     # Calculate how much space is left in the packet
-    remainingBytes = self.__MAX_SIZE - struct.calcsize("d")
+    remainingBytes = self.__MAX_SIZE - (struct.calcsize("d") + 8)
 
     # Append each string to the data buffer until the maximum size is reached
     fullStr = ""
@@ -39,11 +39,9 @@ class Payload:
       else:
         fullStr += string + "|"
 
-    print(fullStr)
-    
     encodedData = RSACipher.encrypt(fullStr)
-    print("ENCODED:")
-    print(encodedData)
+    # print(' '.join('{:02x}'.format(x) for x in encodedData))
+    # print(len(encodedData))
     self.data += encodedData
     remainingBytes -= len(encodedData)
     

@@ -3,7 +3,6 @@ from modules.payload import Payload
 from modules.scraper import MacScraper, DnsScraper, InterfaceScraper, IpScraper
 
 import os
-ICMP_ECHO_REQUEST = 8
 
 class Pinger:
   def __init__(self, ipAddress: str):
@@ -41,6 +40,7 @@ class Pinger:
     network_info_str = ""
     for key, value in network_info.items():
       network_info_str += str.strip(key) + ":" + str(value).strip() + "|"
+    
     packet = payload.build_payload(
       mac,
       network_info_str,
